@@ -1,24 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Fragment,useState} from 'react';
+import Begin from './components/Begin/Begin'
+import { Route, HashRouter as Router } from 'react-router-dom';
+import Login from './components/Login/Login';
+import Register from './components/Register/Register';
+import firebase from 'firebase';
+import { Home } from './components/Home/Home';
+import { Tutorials } from './components/Tutorials/Tutorials';
+import { Classes } from './components/Classes/Classes';
+import { Profile } from './components/Profile/Profile';
+import { userContext } from './utils/userContext';
 
+var firebaseConfig = {
+    apiKey: "AIzaSyDpLcgdcaf-N-T3rxfxDOOT_0hz2WYUuLA",
+    authDomain: "anastomosis-127e8.firebaseapp.com",
+    projectId: "anastomosis-127e8",
+    storageBucket: "anastomosis-127e8.appspot.com",
+    messagingSenderId: "258481329588",
+    appId: "1:258481329588:web:f64526cd1a835cb18e0ee1",
+    measurementId: "G-7YWDFF5VCT"
+  };
+  // Initialize Firebase
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }else {
+    firebase.app(); // if already initialized, use that one
+  }
+  firebase.analytics();
+  
 function App() {
+
+  const [user,setUser] = useState('');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <userContext.Provider value={{user}}>
+        <Router>
+            <Route path="/" exact component={Begin} />
+            <Route path="/login" render={()=>{
+                return <Login setUser={setUser}/> 
+            }}/>
+            <Route path="/register" render={()=>{
+                return <Register setUser={setUser}/> 
+            }}/>
+            <Route path="/home" render={()=>{
+                return <Home /> 
+            }}/>
+            <Route path="/tutorials" render={()=>{
+                return <Tutorials /> 
+            }}/>
+            <Route path="/classes" render={()=>{
+                return <Classes /> 
+            }}/>
+            <Route path="/profile" render={()=>{
+                return <Profile /> 
+            }}/>
+        </Router>
+      </userContext.Provider>
+    </Fragment>
   );
 }
 

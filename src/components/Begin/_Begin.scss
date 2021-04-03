@@ -1,0 +1,12 @@
+@media (max-width: 400px) {
+    .Begin{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+        &__Logo{
+            margin-top: 30px;
+        }
+    }
+}

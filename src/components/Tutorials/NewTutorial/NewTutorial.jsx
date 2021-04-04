@@ -8,7 +8,6 @@ export const NewTutorial = () => {
     const [description,setDescription] = useState('');
 
     const { user } = useContext(userContext);
-    console.log(user);
     
     const date = new Date();
     const currentDate = date.getDate() + "/" + (date.getMonth() +1) + "/" + date.getFullYear();

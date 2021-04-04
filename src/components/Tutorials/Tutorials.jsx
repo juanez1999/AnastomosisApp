@@ -5,6 +5,7 @@ import { NavBar } from '../NavBar/NavBar';
 import { EmptyTutorials } from './EmptyTutorials/EmptyTutorials';
 import { NewTutorial } from './NewTutorial/NewTutorial';
 import firebase from 'firebase';
+import { ItemTutorial } from './ItemTutorial/ItemTutorial';
 
 export const Tutorials = () => {
 
@@ -12,47 +13,83 @@ export const Tutorials = () => {
 
     const [existTutorials,setExistTutorials] = useState(false);
     const [newTutorial,setNewTutorial] = useState(false);
+    const [tutorials,setTutorials] = useState([]);
+
     const userID = user.user.uid;
-    
     React.useEffect(()=>{
         if(!userID) return;
+
         var db = firebase.firestore();    
-        db.collection("users").doc(userID).collection('tutorials').get()
-        .then((querySnapshot) => {
+        let tutorialsTemp = [];
+        db.collection("users").doc(userID).collection('tutorials').onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
+                tutorialsTemp.push(doc.data());
+                setExistTutorials(true);
+                //console.log(doc.id, " => ", doc.data());
             });
+            setTutorials(tutorialsTemp);
         })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
-        });
+
     }, [userID]);
 
-    if(existTutorials){
-        return(
+    // if(existTutorials){
+    //     return(
+    //         <div>
+    //             <h3>Tutoriales</h3>
+    //             {tutorials.map((item)=>{
+    //                 return(
+    //                     <ItemTutorial item={item}/>
+    //                 )
+    //             })}
+    //             <AddButtonTutorial setNewTutorial={setNewTutorial}/>
+    //             <NavBar />
+    //         </div>
+    //     );
+    // }
+    // if(newTutorial){
+    //     return(
+    //         <div>
+    //             <h3>Tutoriales</h3>
+    //             <NewTutorial />
+    //             <NavBar />
+    //         </div>
+    //     );
+    // }
+
+    return(
+        <div>
             <div>
                 <h3>Tutoriales</h3>
+                {existTutorials && 
+                    (<div>
+                        {/* <h3>Tutoriales</h3> */}
+                        {tutorials.map((item)=>{
+                            return(
+                                <ItemTutorial item={item}/>
+                                )
+                            })}
+                            {/* <AddButtonTutorial setNewTutorial={setNewTutorial}/>
+                            <NavBar /> */}
+                    </div>)
+                }
+                {existTutorials === false &&
+                    (<div>
+                        <EmptyTutorials />
+                    </div>)
+                }
                 <AddButtonTutorial setNewTutorial={setNewTutorial}/>
                 <NavBar />
             </div>
-        );
-    }
-    if(newTutorial){
-        return(
-            <div>
-                <h3>Tutoriales</h3>
-                <NewTutorial />
-                <NavBar />
-            </div>
-        );
-    }
-    return(
-        <div>
-            <h3>Tutoriales</h3>
-            <EmptyTutorials />
-            <AddButtonTutorial setNewTutorial={setNewTutorial}/>
-            <NavBar />
-        </div>
+
+            {newTutorial && 
+                (<div>
+                    {/* <h3>Tutoriales</h3> */}
+                    <NewTutorial />
+                    {/* <NavBar /> */}
+                </div>)
+            }
+            
+        </div> 
     );
 }

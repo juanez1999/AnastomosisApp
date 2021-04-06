@@ -21,7 +21,9 @@ export const Tutorials = () => {
 
         var db = firebase.firestore();    
         let tutorialsTemp = [];
-        db.collection("users").doc(userID).collection('tutorials').onSnapshot((querySnapshot) => {
+        db.collection("users").doc(userID).collection('tutorials').get()
+        .then((querySnapshot) => {
+            tutorialsTemp.pop();
             querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
                 tutorialsTemp.push(doc.data());
@@ -31,57 +33,31 @@ export const Tutorials = () => {
             setTutorials(tutorialsTemp);
         })
 
-    }, [userID]);
-
-    // if(existTutorials){
-    //     return(
-    //         <div>
-    //             <h3>Tutoriales</h3>
-    //             {tutorials.map((item)=>{
-    //                 return(
-    //                     <ItemTutorial item={item}/>
-    //                 )
-    //             })}
-    //             <AddButtonTutorial setNewTutorial={setNewTutorial}/>
-    //             <NavBar />
-    //         </div>
-    //     );
-    // }
-    // if(newTutorial){
-    //     return(
-    //         <div>
-    //             <h3>Tutoriales</h3>
-    //             <NewTutorial />
-    //             <NavBar />
-    //         </div>
-    //     );
-    // }
+    }, [userID,tutorials]);
 
     return(
         <div>
-            <div>
-                <h3>Tutoriales</h3>
-                {existTutorials && 
-                    (<div>
-                        {/* <h3>Tutoriales</h3> */}
-                        {tutorials.map((item)=>{
-                            return(
-                                <ItemTutorial item={item}/>
-                                )
-                            })}
-                            {/* <AddButtonTutorial setNewTutorial={setNewTutorial}/>
-                            <NavBar /> */}
-                    </div>)
-                }
-                {existTutorials === false &&
-                    (<div>
-                        <EmptyTutorials />
-                    </div>)
-                }
-                <AddButtonTutorial setNewTutorial={setNewTutorial}/>
-                <NavBar />
-            </div>
-
+            <h3>Tutoriales</h3>
+            {existTutorials && 
+                (<div>
+                    {/* <h3>Tutoriales</h3> */}
+                    {tutorials.map((item)=>{
+                        return(
+                            <ItemTutorial item={item}/>
+                            )
+                        })}
+                        {/* <AddButtonTutorial setNewTutorial={setNewTutorial}/>
+                        <NavBar /> */}
+                </div>)
+            }
+            {existTutorials === false &&
+                (<div>
+                    <EmptyTutorials />
+                </div>)
+            }
+            <AddButtonTutorial setNewTutorial={setNewTutorial}/>
+            <NavBar />
+            
             {newTutorial && 
                 (<div>
                     {/* <h3>Tutoriales</h3> */}

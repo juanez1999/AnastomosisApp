@@ -2,11 +2,10 @@ import React,{ useState, useContext } from 'react';
 import firebase from 'firebase';
 import { userContext } from '../../../utils/userContext';
 
-export const NewTutorial = () => {
+export const NewLesson = () => {
 
     const [title,setTitle] = useState('');
     const [description,setDescription] = useState('');
-
     const { user } = useContext(userContext);
     
     const date = new Date();
@@ -18,7 +17,7 @@ export const NewTutorial = () => {
         setDescription('');
         setTitle('');
         
-        db.collection("users").doc(user.user.uid).collection('tutorials').add({
+        db.collection("users").doc(user.user.uid).collection('lessons').add({
             title: title,
             description: description,
             date: currentDate
@@ -33,11 +32,10 @@ export const NewTutorial = () => {
 
     return (
         <div>
-            <h3>Nuevo tutorial</h3>
-            <button >Presiona para grabar un tutorial</button>
+            <h3>Nueva clase</h3>
             <form action="" onSubmit={sendData}>
                 <input type="text" 
-                    placeholder="Nombre del tutorial" 
+                    placeholder="Nombre de la clase" 
                     value={title}
                     onChange={e => setTitle(e.target.value)}>
                 </input>
@@ -46,10 +44,6 @@ export const NewTutorial = () => {
                     value={description}
                     onChange={e => setDescription(e.target.value)}>
                 </input>
-                <select name="select">
-                    <option disabled selected>Selecciona una clase</option>
-                    <option></option>
-                </select>
                 <button type="submit">Finalizar</button>
             </form>
         </div>

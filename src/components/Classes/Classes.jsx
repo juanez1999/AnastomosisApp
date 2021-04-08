@@ -14,24 +14,25 @@ export const Classes = () => {
     const [existClasses,setExistClasses] = useState(false);
     const [newLesson,setNewLesson] = useState(false);
 
-    const userID = user.user.uid;
+    const userID = user?.user?.uid;
 
     React.useEffect(()=>{
         if(!userID) return;
 
         var db = firebase.firestore();    
-        let lessonsTemp = [];
-        db.collection("users").doc(userID).collection('lessons').get()
-        .then((querySnapshot) => {
-            lessonsTemp.pop();
+        const unsubscribe = db.collection("users").doc(userID).collection('lessons').onSnapshot((querySnapshot) => {
+            let lessonsTemp = [];
             querySnapshot.forEach((doc) => {
-                // doc.data() is never undefined for query doc snapshots
-                lessonsTemp.push(doc.data());
+                lessonsTemp.push(doc);
                 setExistClasses(true);
-                //console.log(doc.id, " => ", doc.data());
             });
             setClasses(lessonsTemp);
-        })
+        });
+
+        return () => {
+            console.log('component destroyed');
+            unsubscribe();
+        }
 
     }, [userID]);
 
@@ -47,7 +48,7 @@ export const Classes = () => {
                         })}
                 </div>)
             }
-            {existClasses === false &&
+            {classes.length === 0 &&
                 (<div>
                     <EmptyClasses />
                 </div>)

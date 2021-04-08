@@ -1,6 +1,6 @@
 import React, {Fragment,useState} from 'react';
 import Begin from './components/Begin/Begin'
-import { Route, HashRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import firebase from 'firebase';
@@ -9,6 +9,7 @@ import { Tutorials } from './components/Tutorials/Tutorials';
 import { Classes } from './components/Classes/Classes';
 import { Profile } from './components/Profile/Profile';
 import { userContext } from './utils/userContext';
+import { LessonDetails } from './components/LessonDetails/LessonDetails';
 
 var firebaseConfig = {
     apiKey: "AIzaSyDpLcgdcaf-N-T3rxfxDOOT_0hz2WYUuLA",
@@ -30,6 +31,12 @@ var firebaseConfig = {
 function App() {
 
   const [user,setUser] = useState('');
+
+  React.useEffect(() => {
+    firebase.auth().onAuthStateChanged((user, error) => {
+      if(user) setUser({ user });
+    })
+  }, []);
 
   return (
     <Fragment>
@@ -54,6 +61,7 @@ function App() {
             <Route path="/profile" render={()=>{
                 return <Profile /> 
             }}/>
+            <Route exact path="/lessonDetails/:id" component={LessonDetails} />
         </Router>
       </userContext.Provider>
     </Fragment>

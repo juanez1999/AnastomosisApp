@@ -15,25 +15,27 @@ export const Tutorials = () => {
     const [newTutorial,setNewTutorial] = useState(false);
     const [tutorials,setTutorials] = useState([]);
 
-    const userID = user.user.uid;
+    const userID = user?.user?.uid;
+
     React.useEffect(()=>{
         if(!userID) return;
 
         var db = firebase.firestore();    
-        let tutorialsTemp = [];
-        db.collection("users").doc(userID).collection('tutorials').get()
-        .then((querySnapshot) => {
-            tutorialsTemp.pop();
+        const unsubscribe =  db.collection("users").doc(userID).collection('tutorials').onSnapshot((querySnapshot) => {
+            let tutorialsTemp = [];
             querySnapshot.forEach((doc) => {
-                // doc.data() is never undefined for query doc snapshots
                 tutorialsTemp.push(doc.data());
                 setExistTutorials(true);
-                //console.log(doc.id, " => ", doc.data());
             });
             setTutorials(tutorialsTemp);
-        })
+        });
 
-    }, [userID,tutorials]);
+        return () => {
+            console.log('component destroyed');
+            unsubscribe();
+        }
+
+    }, [userID]);
 
     return(
         <div>
@@ -41,16 +43,16 @@ export const Tutorials = () => {
             {existTutorials && 
                 (<div>
                     {/* <h3>Tutoriales</h3> */}
-                    {tutorials.map((item)=>{
+                    {tutorials.map((item,index)=>{
                         return(
-                            <ItemTutorial item={item}/>
+                            <ItemTutorial  key={index} item={item}/>
                             )
                         })}
                         {/* <AddButtonTutorial setNewTutorial={setNewTutorial}/>
                         <NavBar /> */}
                 </div>)
             }
-            {existTutorials === false &&
+            {tutorials.length === 0 &&
                 (<div>
                     <EmptyTutorials />
                 </div>)
@@ -60,9 +62,7 @@ export const Tutorials = () => {
             
             {newTutorial && 
                 (<div>
-                    {/* <h3>Tutoriales</h3> */}
                     <NewTutorial />
-                    {/* <NavBar /> */}
                 </div>)
             }
             

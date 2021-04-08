@@ -7,7 +7,7 @@ export const Home = () => {
 
     const { user } = useContext(userContext);
     const [name,setName] = useState('');
-    const userID = user.user.uid;
+    const userID = user?.user?.uid;
     
     React.useEffect(()=>{
         const db = firebase.firestore();

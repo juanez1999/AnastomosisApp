@@ -1,0 +1,53 @@
+.addElement{
+    display: flex;
+    flex-direction: column;
+    background: #FDFFFF;
+    border-radius: 15px 15px 0px 0px;
+    z-index: 12;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    &__header{
+        display: flex;
+        flex-direction: row;
+        border-bottom: 1px solid rgba(0, 153, 150, .1);
+
+        p{
+            font-size: $text-14;
+            font-weight: 700;
+            color: #F894BA;
+        }
+
+        h3{
+            margin-left: 10px;
+            margin-bottom: 15px;
+        }
+    }
+
+    &__options{
+        display: flex;
+        flex-direction: column;
+
+        &Item{
+            display: flex;
+            flex-direction: row;
+            border-bottom: 1px solid rgba(0, 153, 150, .1);
+
+            &:nth-child(3){
+                border: none;
+            }
+
+            img{
+                margin: 15px 0px;
+            }
+
+            p{
+                color: #142546;
+                opacity: 0.8;
+                margin: 15px 0px;
+                margin-left: 10px;
+            }
+        }
+    }
+}

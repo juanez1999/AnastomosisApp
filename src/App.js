@@ -10,6 +10,8 @@ import { Classes } from './components/Classes/Classes';
 import { Profile } from './components/Profile/Profile';
 import { userContext } from './utils/userContext';
 import { LessonDetails } from './components/LessonDetails/LessonDetails';
+import { CreateCourse } from './components/CreateCourse/CreateCourse';
+import { CourseDetails } from './components/CourseDetails/CourseDetails';
 
 var firebaseConfig = {
     apiKey: "AIzaSyDpLcgdcaf-N-T3rxfxDOOT_0hz2WYUuLA",
@@ -62,6 +64,10 @@ function App() {
                 return <Profile /> 
             }}/>
             <Route exact path="/lessonDetails/:id" component={LessonDetails} />
+            <Route path="/nuevoCurso" render={()=>{
+                return <CreateCourse/> 
+            }}/>
+            <Route exact path="/courseDetails/:id" component={CourseDetails} />
         </Router>
       </userContext.Provider>
     </Fragment>

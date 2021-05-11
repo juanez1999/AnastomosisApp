@@ -1,0 +1,42 @@
+.course{
+    display: flex;
+    flex-direction: column;
+    filter: drop-shadow(0px 15px 35px rgba(0, 153, 150, 0.3));
+    border-radius: 10px;
+    padding: 20px;
+    color: #FFFFFF;
+    background-size: cover; 
+    background-position: center; 
+    margin: 25px 0px;
+
+    h3{
+        color: #FFFFFF;
+    }
+
+    &__info{
+        display: flex;
+        flex-direction: column;
+    
+        &State{
+            display: flex;
+            flex-direction: row;
+            margin-top: 5px;
+
+            p {
+                &:first-child{
+                    font-weight: 700;
+                }
+                
+                &:nth-child(2){
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+
+    &__participants{
+        display: flex;
+        margin-top: 20px;
+        justify-content: flex-end;
+    }
+}

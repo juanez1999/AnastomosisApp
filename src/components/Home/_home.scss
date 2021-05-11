@@ -1,0 +1,53 @@
+.home{
+
+    &__info{
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0px;
+
+        &Data{
+            display: flex;
+            align-items: center;
+            line-height: 25px;
+
+            h3 {
+                margin-left: 10px;
+    
+                &:first-child{
+                    margin-left: 0px;
+                    font-weight: 400;
+                }
+            }
+        }
+
+        p{
+            font-size: $text-8;       
+            color: #142546;
+            opacity: 0.5;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+    }
+
+    &__courses{
+        margin: 20px 0px;
+        display: flex;
+        flex-direction: column;
+
+        &Header{
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            line-height: 27.5px;
+            justify-content: space-between;
+            margin-bottom: 20px;
+    
+            a {
+                color: #F894BA;
+                font-size: $text-10;
+            }
+        }
+        
+    }
+
+}

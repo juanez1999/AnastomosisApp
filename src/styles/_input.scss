@@ -1,0 +1,100 @@
+.inputField{
+    margin: 10px 0px;  
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    background-size: 15px;
+    height: 50px;
+    display: flex;
+
+    input {
+        width: 100%;
+        background: #F4FBFB;
+        opacity: 0.35;
+        border: 1px solid #006B69;
+        box-sizing: border-box;
+        border-radius: 15px;
+        font-family: $Noto;
+        font-weight: 400;
+        transition: all .2s ease-out;
+
+
+        &:focus{
+            outline: none;
+            color: #142546;
+        }
+    }
+
+    &--hasImg{
+        input {
+            padding-left: 40px;
+        }
+
+        textarea {
+            padding-left: 40px;
+            padding-top: 13px;
+        }
+    }
+
+    &--notImg{
+        input {
+            padding-left: 20px;
+        }
+    }
+
+    &--textarea{
+        height: 100px;
+        background-position: 15px top;
+        background-position-y: 15px;
+
+        textarea{
+            width: 100%;
+            background: #F4FBFB;
+            opacity: 0.35;
+            border: 1px solid #006B69;
+            box-sizing: border-box;
+            border-radius: 15px;
+            font-family: "Noto Sans", sans-serif;
+            font-weight: 400;
+            resize: none;
+
+            &:focus{
+                outline: none;
+                color: #142546;
+            }
+        }
+    }
+
+    &--novelty{
+        textarea{
+            border: none;
+            background: #FDFFFF;
+            box-shadow: 0px 19px 31px rgba(20, 37, 70, 0.08);
+            opacity: 1;
+        }
+        
+    }
+
+    &--filled{   
+        input {
+            background-color: #DDF7F6;
+            border: none;
+            font-weight: 500;
+
+            &::placeholder {
+                color: #006B69;
+            }
+
+            &:focus{
+                color: #006B69;
+            }
+
+            &:target{
+                color: #006B69;
+            }
+
+            &:visited{
+                color: #006B69;
+            }
+        }
+    }
+}

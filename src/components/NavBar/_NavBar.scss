@@ -1,12 +1,13 @@
-@media (max-width: 400px) {
+@media (max-width: 576px) {
     .NavBar{
         width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        position: absolute;
+        position: fixed;
         bottom: 0;
-        margin: 10px 0px;
+        background: #F4FBFB;
+        padding: 15px;
 
         a{
             text-decoration: none;

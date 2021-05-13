@@ -1,0 +1,50 @@
+.participants{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 70px;
+
+    &__teacher{
+        display: flex;
+        flex-direction: column;
+
+        h3{
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(20, 37, 70, .5);
+        }
+    }
+
+    &__students{
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+
+        &Header{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(20, 37, 70, .5);
+            margin-bottom: 10px;
+
+            &Notes{
+                display: flex;
+                flex-direction: row;
+                width: 70%;
+                justify-content: flex-end;
+                align-items: center;
+
+                img {
+                    width: 20px;
+                }
+
+                p {
+                    font-size: $text-8;
+                    margin-left: 10px;
+                    color: #F894BA;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+}

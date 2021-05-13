@@ -1,0 +1,24 @@
+.cardParticipant{
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0px;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 153, 150, 0.1);
+
+    &__info{
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+
+        h4 {
+            font-weight: 700;
+            font-size: $text-12;
+        }
+
+        p{
+            font-size: $text-8;
+            opacity: 0.8;
+        }
+    }
+}

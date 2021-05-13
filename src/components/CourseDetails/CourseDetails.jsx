@@ -1,4 +1,5 @@
 import React, { useState, useContext, Fragment } from 'react';
+import ReactDOM from 'react-dom'
 import { useParams } from "react-router-dom";
 import { userContext } from '../../utils/userContext';
 import firebase from 'firebase';
@@ -6,21 +7,31 @@ import { Link } from 'react-router-dom';
 import { NavBar } from '../NavBar/NavBar';
 import { AddButton } from '../Buttons/AddButton/AddButton';
 import { AddElementView } from '../AddElementView/AddElementView';
+import { Novelty } from './Novelty/Novelty';
+import { Content } from './Content/Content';
+import { Homework } from './Homework/Homework';
+import { Participants } from './Participants/Participants';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 export const CourseDetails = () => {
 
     const { id } = useParams();
     const { user } = useContext(userContext);
-    const userID = user.user.uid;
+    const userID = user?.user?.uid;
     const idSearch = id;
 
     const [courseDetails,setCourseDetails] = useState([]);
-    const [shareInfo,setShareInfo] = useState('');
     const [addElement,setAddElement] = useState(false);
     const [novelty,setNovelty] = useState(true);
     const [content,setContent] = useState(false);
     const [homework,setHomework] = useState(false);
     const [participants,setParticipants] = useState(false);
+    const [tabValue,setTabValue] = useState('');
+
+    const handleChangeTab = (func,value) => {
+        setTabValue(value);
+    }
 
     const toggleNovelty = () => {
         setContent(false);
@@ -89,51 +100,43 @@ export const CourseDetails = () => {
                 </div>
             </div>
             <div className="courseDetails__nav">
-                <Link onClick={toggleNovelty}>Novedades</Link>
+                {/* <Link onClick={toggleNovelty}>Novedades</Link>
                 <Link onClick={toggleContent}>Contenido</Link>
                 <Link onClick={toggleHomework}>Tareas</Link>
-                <Link onClick={toggleParticipants}>Participantes</Link>
+                <Link onClick={toggleParticipants}>Participantes</Link> */}
+                <Tabs value={tabValue} onChange={handleChangeTab} aria-label="simple tabs example">
+                    <Tab value={'novelty'} label="Novedades"/>
+                    <Tab value={'content'}label="Contenidos"/>
+                    <Tab value={'homework'} label="Tareas"/>
+                    <Tab value={'participants'} label="Participantes"/>
+                </Tabs>
             </div>
             {novelty &&  
-                (<Fragment>
-                    <div className="courseDetails__shareInfo outer-pad">
-                    <div className="inputField inputField--hasImg inputField--textarea inputField--novelty"  style={{backgroundImage: `url(${process.env.PUBLIC_URL}/resources/icon_edit.svg)`}}>
-                        <textarea type="text" name="" id="" 
-                        placeholder="Comparte información con la clase..."              
-                        value={shareInfo}
-                        onChange={e => setShareInfo(e.target.value)}/>
-                    </div>
-                </div>
-                    <div className="courseDetails__news">
-                    <h3>Muro</h3>
-                </div>
-                </Fragment>) 
+                (<Novelty/>) 
+            }
+
+            {content &&  
+                (<div className="courseDetails__content">
+                    <Content/>
+                    <Content/>
+                </div>) 
             }
 
             {homework &&  
-                (<Fragment>
-                    <div className="courseDetails__shareInfo outer-pad">
-                    <div className="inputField inputField--hasImg inputField--textarea inputField--novelty"  style={{backgroundImage: `url(${process.env.PUBLIC_URL}/resources/icon_edit.svg)`}}>
-                        <textarea type="text" name="" id="" 
-                        placeholder="Comparte información con la clase..."              
-                        value={shareInfo}
-                        onChange={e => setShareInfo(e.target.value)}/>
-                    </div>
-                </div>
-                    <div className="courseDetails__news">
-                    <h3>Muro</h3>
-                </div>
-                </Fragment>) 
+                (<Homework/>) 
             }
 
-            {addElement === false && 
-                (<Fragment>
-                    <AddButton setAddElement={setAddElement}/>
-                    <NavBar/>
-                </Fragment>)
+            {participants &&  
+                (<Participants/>) 
             }
+            <AddButton setAddElement={setAddElement}/>
+            <NavBar/>
+            {/* {addElement === false && 
+                (<Fragment>
+                </Fragment>)
+            } */}
             {addElement && 
-                (<AddElementView/>)
+                (ReactDOM.createPortal(<AddElementView/>,document.body))
             }
         </div>
     )

@@ -1,0 +1,68 @@
+.newHomework{
+    display: flex;
+    flex-direction: column;
+    z-index: 4;
+    background: #FDFFFF;
+    border-radius: 15px 15px 0px 0px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    margin-top: 25px;
+    height: 100%;
+    
+    &__header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        a {
+            color: #F894BA;
+        }
+
+        &Close{
+            display: flex;
+            justify-content: center;
+
+            a{
+                margin-left: 10px;
+                color: #142546;
+                opacity: 0.5;
+            }
+        }
+    }
+
+    &__title{
+        margin-top:  20px;
+        margin-bottom: 10px;
+
+        p{
+            color: #142546;
+            opacity: 0.5;
+        }
+    }
+
+    &__participants{
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0px;
+
+        &Header{
+            h4{
+                font-size: $text-14;
+            }
+    
+            p{
+                margin-top: 10px;
+                color: #142546;
+                opacity: 0.5;
+            }
+        }
+
+        &Code{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+}

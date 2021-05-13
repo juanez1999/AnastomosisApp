@@ -4,7 +4,6 @@
 
 html {
     font-size: 62.5%;
-    min-height: 100%;
 }
 
 footer, header, nav, section, main{
@@ -80,6 +79,12 @@ body{
 @import './components/CourseDetails/courseDetails';
 @import './components/Buttons/AddButton/addButton';
 @import './components/AddElementView/addElementView';
+@import './components/CourseDetails/Content/content';
+@import './components/CourseDetails/Homework/homework';
+@import './components/CourseDetails/Homework/Task/_task';
+@import './components/CourseDetails/Participants/participants';
+@import './components/CourseDetails/Participants/CardParticipant/cardParticipant';
+@import './components/CreateHomework/createHomework';
 @import './styles/input';
 @import './styles/buttons';
 @import './styles/reset';

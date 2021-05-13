@@ -1,0 +1,13 @@
+.homework{
+
+    margin-bottom: 100px;
+
+    h3 {
+        padding-bottom: 5px;
+        border-bottom: 1px solid rgba(20, 37, 70, .5);
+    }
+
+    &__active{
+        margin-bottom: 20px;
+    }
+}

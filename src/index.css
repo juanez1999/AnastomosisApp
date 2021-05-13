@@ -6,7 +6,6 @@
 
 html {
   font-size: 62.5%;
-  min-height: 100%;
 }
 
 footer, header, nav, section, main {
@@ -138,10 +137,7 @@ p, h4, h5, h6, a, label, button {
     position: fixed;
     bottom: 0;
     background: #F4FBFB;
-    padding: 15px;
-  }
-  .NavBar a {
-    text-decoration: none;
+    padding: 20px;
   }
   .NavBar__home {
     cursor: pointer;
@@ -156,14 +152,10 @@ p, h4, h5, h6, a, label, button {
         -ms-flex-align: center;
             align-items: center;
   }
-  .NavBar__home p {
-    margin: 0px;
-    margin-top: 5px;
-  }
   .NavBar__home img {
-    width: 25px;
+    width: 22px;
   }
-  .NavBar__tutorials {
+  .NavBar__notifications {
     cursor: pointer;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -176,12 +168,8 @@ p, h4, h5, h6, a, label, button {
         -ms-flex-align: center;
             align-items: center;
   }
-  .NavBar__tutorials p {
-    margin: 0px;
-    margin-top: 5px;
-  }
-  .NavBar__tutorials img {
-    width: 29px;
+  .NavBar__notifications img {
+    width: 22px;
   }
   .NavBar__classes {
     cursor: pointer;
@@ -196,12 +184,8 @@ p, h4, h5, h6, a, label, button {
         -ms-flex-align: center;
             align-items: center;
   }
-  .NavBar__classes p {
-    margin: 0px;
-    margin-top: 4px;
-  }
   .NavBar__classes img {
-    width: 25px;
+    width: 22px;
   }
   .NavBar__profile {
     cursor: pointer;
@@ -216,12 +200,8 @@ p, h4, h5, h6, a, label, button {
         -ms-flex-align: center;
             align-items: center;
   }
-  .NavBar__profile p {
-    margin: 0px;
-    margin-top: 5px;
-  }
   .NavBar__profile img {
-    width: 25px;
+    width: 22px;
   }
 }
 
@@ -329,7 +309,8 @@ p, h4, h5, h6, a, label, button {
 }
 
 .home__courses {
-  margin: 20px 0px;
+  margin-top: 20px;
+  margin-bottom: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -665,11 +646,16 @@ p, h4, h5, h6, a, label, button {
   background-clip: padding-box;
 }
 
+.courseDetails__content {
+  margin-top: 10px;
+  margin-bottom: 100px;
+}
+
 .addBtn {
   position: fixed;
   bottom: 0;
   right: 0;
-  z-index: 12;
+  z-index: 2;
   background: #ddfbfa;
   border-radius: 50px;
   -webkit-filter: drop-shadow(1px 14px 14px rgba(10, 98, 96, 0.11));
@@ -689,7 +675,7 @@ p, h4, h5, h6, a, label, button {
           flex-direction: column;
   background: #FDFFFF;
   border-radius: 15px 15px 0px 0px;
-  z-index: 12;
+  z-index: 3;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -751,6 +737,309 @@ p, h4, h5, h6, a, label, button {
   opacity: 0.8;
   margin: 15px 0px;
   margin-left: 10px;
+}
+
+.content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-bottom: 3px solid #51BFBD;
+  width: 100%;
+  background: #FDFFFF;
+  -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.03);
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.content__title {
+  opacity: 0.8;
+}
+
+.content__title b {
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+.content__date {
+  font-size: 0.8rem;
+  margin-top: 10px;
+  opacity: 0.5;
+}
+
+.homework {
+  margin-bottom: 100px;
+}
+
+.homework h3 {
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(20, 37, 70, 0.5);
+}
+
+.homework__active {
+  margin-bottom: 20px;
+}
+
+.task {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-filter: drop-shadow(0px 19px 31px rgba(20, 37, 70, 0.08));
+          filter: drop-shadow(0px 19px 31px rgba(20, 37, 70, 0.08));
+  background: #FDFFFF;
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.task img {
+  width: 35px;
+}
+
+.task__info {
+  margin-left: 20px;
+}
+
+.task__info p:nth-child(1) {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.task__info p:nth-child(2) {
+  opacity: 0.5;
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+}
+
+.task__info p:nth-child(3) {
+  font-size: 0.8rem;
+  color: #F894BA;
+}
+
+.task--desactived {
+  background: rgba(75, 75, 75, 0.1);
+  mix-blend-mode: multiply;
+  -webkit-box-shadow: 0px 15px 40px rgba(52, 130, 128, 0.1);
+          box-shadow: 0px 15px 40px rgba(52, 130, 128, 0.1);
+  border-radius: 15px;
+}
+
+.participants {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 70px;
+}
+
+.participants__teacher {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.participants__teacher h3 {
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(20, 37, 70, 0.5);
+}
+
+.participants__students {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 20px;
+}
+
+.participants__studentsHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(20, 37, 70, 0.5);
+  margin-bottom: 10px;
+}
+
+.participants__studentsHeaderNotes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 70%;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.participants__studentsHeaderNotes img {
+  width: 20px;
+}
+
+.participants__studentsHeaderNotes p {
+  font-size: 0.8rem;
+  margin-left: 10px;
+  color: #F894BA;
+  font-weight: 400;
+}
+
+.cardParticipant {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: 10px 0px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 153, 150, 0.1);
+}
+
+.cardParticipant__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 20px;
+}
+
+.cardParticipant__info h4 {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.cardParticipant__info p {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.newHomework {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  z-index: 4;
+  background: #FDFFFF;
+  border-radius: 15px 15px 0px 0px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin-top: 25px;
+  height: 100%;
+}
+
+.newHomework__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.newHomework__header a {
+  color: #F894BA;
+}
+
+.newHomework__headerClose {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.newHomework__headerClose a {
+  margin-left: 10px;
+  color: #142546;
+  opacity: 0.5;
+}
+
+.newHomework__title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.newHomework__title p {
+  color: #142546;
+  opacity: 0.5;
+}
+
+.newHomework__participants {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 20px 0px;
+}
+
+.newHomework__participantsHeader h4 {
+  font-size: 1.4rem;
+}
+
+.newHomework__participantsHeader p {
+  margin-top: 10px;
+  color: #142546;
+  opacity: 0.5;
+}
+
+.newHomework__participantsCode {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .inputField {

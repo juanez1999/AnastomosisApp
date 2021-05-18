@@ -87,7 +87,23 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        padding: 15px 25px;
+
+        &Tabs{
+            width: 100%;
+            font-family: $Encode;
+
+            div{
+                justify-content: space-between;
+            }
+            
+            button {
+                letter-spacing: 0;
+                text-transform: none;
+                padding: 0px 0px;
+                font-size: $text-10;
+                min-width: 0;
+            }
+        }
 
         a{
             color: #142546;
@@ -109,4 +125,8 @@
         margin-bottom: 100px;
 
     }
+}
+
+.PrivateTabIndicator-colorSecondary-4 {
+    background-color: #F894BA !important;
 }

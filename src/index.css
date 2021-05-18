@@ -68,10 +68,6 @@ body {
   background-color: #F4FBFB;
 }
 
-.root {
-  height: 100vh;
-}
-
 button, h1, h2, h3, h4, h5, h6, a, p, li {
   -webkit-transition: font-size 0.3s ease-out;
   transition: font-size 0.3s ease-out;
@@ -629,7 +625,25 @@ p, h4, h5, h6, a, label, button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 15px 25px;
+}
+
+.courseDetails__navTabs {
+  width: 100%;
+  font-family: "Encode Sans", sans-serif;
+}
+
+.courseDetails__navTabs div {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.courseDetails__navTabs button {
+  letter-spacing: 0;
+  text-transform: none;
+  padding: 0px 0px;
+  font-size: 1rem;
+  min-width: 0;
 }
 
 .courseDetails__nav a {
@@ -649,6 +663,10 @@ p, h4, h5, h6, a, label, button {
 .courseDetails__content {
   margin-top: 10px;
   margin-bottom: 100px;
+}
+
+.PrivateTabIndicator-colorSecondary-4 {
+  background-color: #F894BA !important;
 }
 
 .addBtn {
@@ -737,6 +755,11 @@ p, h4, h5, h6, a, label, button {
   opacity: 0.8;
   margin: 15px 0px;
   margin-left: 10px;
+}
+
+.portalAddElement div:nth-child(3) div {
+  width: 100%;
+  margin: 0;
 }
 
 .content {
@@ -957,13 +980,9 @@ p, h4, h5, h6, a, label, button {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  z-index: 4;
   background: #FDFFFF;
   border-radius: 15px 15px 0px 0px;
-  position: fixed;
-  top: 0;
   width: 100%;
-  margin-top: 25px;
   height: 100%;
 }
 
@@ -982,6 +1001,7 @@ p, h4, h5, h6, a, label, button {
 
 .newHomework__header a {
   color: #F894BA;
+  font-size: 1rem;
 }
 
 .newHomework__headerClose {
@@ -1000,7 +1020,6 @@ p, h4, h5, h6, a, label, button {
 }
 
 .newHomework__title {
-  margin-top: 20px;
   margin-bottom: 10px;
 }
 
@@ -1009,7 +1028,7 @@ p, h4, h5, h6, a, label, button {
   opacity: 0.5;
 }
 
-.newHomework__participants {
+.newHomework__delivery {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1017,29 +1036,111 @@ p, h4, h5, h6, a, label, button {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 20px 0px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 10px 0px;
+  background: #DDF6F6;
+  border-radius: 15px;
+  padding: 15px;
 }
 
-.newHomework__participantsHeader h4 {
-  font-size: 1.4rem;
-}
-
-.newHomework__participantsHeader p {
-  margin-top: 10px;
-  color: #142546;
-  opacity: 0.5;
-}
-
-.newHomework__participantsCode {
+.newHomework__deliveryCalendar {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.newHomework__deliveryCalendarDate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 60%;
+}
+
+.newHomework__deliveryCalendarDate img {
+  opacity: 0.3;
+  width: 10%;
+}
+
+.newHomework__deliveryCalendarDate p {
+  font-size: 1rem;
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.newHomework__unit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 10px;
+  background: #DDF6F6;
+  border-radius: 15px;
+  padding: 5px;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.newHomework__unitHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  width: 100%;
+}
+
+.newHomework__evaluation {
+  margin-top: 20px;
+  padding-bottom: 50px;
+}
+
+.newHomework__evaluationTitle h3 {
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+.newHomework__evaluationTitle p {
+  margin: 10px 0px;
+  opacity: 0.5;
+}
+
+.MuiPaper-root {
+  width: 100%;
+  margin: 0 !important;
+}
+
+.react-datepicker__header {
+  background-color: #DDF6F6 !important;
 }
 
 .inputField {

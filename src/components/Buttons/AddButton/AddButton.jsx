@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 
-export const AddButton = ({setAddElement}) => {
+export const AddButton = ({handleClickOpen}) => {
 
     const addElement = () => {
-        setAddElement(true);
+        handleClickOpen();
     }
 
     return(

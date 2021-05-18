@@ -1,13 +1,9 @@
 .newHomework{
     display: flex;
     flex-direction: column;
-    z-index: 4;
     background: #FDFFFF;
     border-radius: 15px 15px 0px 0px;
-    position: fixed;
-    top: 0;
     width: 100%;
-    margin-top: 25px;
     height: 100%;
     
     &__header{
@@ -17,6 +13,7 @@
 
         a {
             color: #F894BA;
+            font-size: $text-10;
         }
 
         &Close{
@@ -32,7 +29,6 @@
     }
 
     &__title{
-        margin-top:  20px;
         margin-bottom: 10px;
 
         p{
@@ -41,28 +37,83 @@
         }
     }
 
-    &__participants{
+    &__delivery{
         display: flex;
         flex-direction: column;
-        margin: 20px 0px;
+        align-items: center;
+        margin:  10px 0px;
+        background: #DDF6F6;
+        border-radius: 15px;
+        padding: 15px;
+
+        &Calendar{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+
+            &Date{
+                display: flex;
+                flex-direction: row;
+                width: 60%;
+
+                img{
+                    opacity: 0.3;
+                    width: 10%;
+                }
+                p{
+                    font-size: $text-10;
+                    margin-left: 10px;
+                    font-weight: 500;
+                }
+            }
+        }
+    } 
+    
+    &__unit{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+        background: #DDF6F6;
+        border-radius: 15px;
+        padding: 5px;
+        font-family: $Noto;
 
         &Header{
-            h4{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            
+        }
+    }
+
+    &__evaluation{
+        margin-top: 20px;
+        padding-bottom: 50px;
+
+        &Title{
+            h3{
+                font-weight: 500;
                 font-size: $text-14;
             }
     
             p{
-                margin-top: 10px;
-                color: #142546;
+                margin: 10px 0px;
                 opacity: 0.5;
             }
         }
-
-        &Code{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
     }
+}
 
+.MuiPaper-root{
+    width: 100%;
+    margin: 0 !important;
+}
+
+.react-datepicker__header{
+    background-color: #DDF6F6 !important;
 }

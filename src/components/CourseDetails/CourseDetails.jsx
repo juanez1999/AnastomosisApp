@@ -1,9 +1,7 @@
-import React, { useState, useContext, Fragment } from 'react';
-import ReactDOM from 'react-dom'
+import React, { useState, useContext } from 'react';
 import { useParams } from "react-router-dom";
 import { userContext } from '../../utils/userContext';
 import firebase from 'firebase';
-import { Link } from 'react-router-dom';
 import { NavBar } from '../NavBar/NavBar';
 import { AddButton } from '../Buttons/AddButton/AddButton';
 import { AddElementView } from '../AddElementView/AddElementView';
@@ -11,8 +9,13 @@ import { Novelty } from './Novelty/Novelty';
 import { Content } from './Content/Content';
 import { Homework } from './Homework/Homework';
 import { Participants } from './Participants/Participants';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { makeStyles, createStyles, Tab, Tabs } from '@material-ui/core';
+import Dialog from '@material-ui/core/Dialog';
+import Slide from '@material-ui/core/Slide';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export const CourseDetails = () => {
 
@@ -22,44 +25,21 @@ export const CourseDetails = () => {
     const idSearch = id;
 
     const [courseDetails,setCourseDetails] = useState([]);
-    const [addElement,setAddElement] = useState(false);
-    const [novelty,setNovelty] = useState(true);
-    const [content,setContent] = useState(false);
-    const [homework,setHomework] = useState(false);
-    const [participants,setParticipants] = useState(false);
-    const [tabValue,setTabValue] = useState('');
+    const [tabValue,setTabValue] = useState('novelty');
+    const [open, setOpen] = React.useState(false);
+
+    const classes = useStyles();
 
     const handleChangeTab = (func,value) => {
         setTabValue(value);
     }
 
-    const toggleNovelty = () => {
-        setContent(false);
-        setNovelty(true);
-        setHomework(false);
-        setParticipants(false);
-    }
-
-    const toggleContent = () => {
-        setContent(true);
-        setNovelty(false);
-        setHomework(false);
-        setParticipants(false);
-    }
-
-    const toggleHomework = () => {
-        setContent(false);
-        setNovelty(false);
-        setHomework(true);
-        setParticipants(false);
-    }
-
-    const toggleParticipants = () => {
-        setContent(false);
-        setNovelty(false);
-        setHomework(false)
-        setParticipants(true);
-    }
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
     React.useEffect(()=>{
         if(!userID) return;
         if(!idSearch) return;
@@ -73,6 +53,7 @@ export const CourseDetails = () => {
             }
         })
     }, [userID,idSearch]);
+
 
     return(
         <div className="courseDetails">
@@ -100,44 +81,44 @@ export const CourseDetails = () => {
                 </div>
             </div>
             <div className="courseDetails__nav">
-                {/* <Link onClick={toggleNovelty}>Novedades</Link>
-                <Link onClick={toggleContent}>Contenido</Link>
-                <Link onClick={toggleHomework}>Tareas</Link>
-                <Link onClick={toggleParticipants}>Participantes</Link> */}
-                <Tabs value={tabValue} onChange={handleChangeTab} aria-label="simple tabs example">
+                <Tabs value={tabValue} onChange={handleChangeTab} className="courseDetails__navTabs" classes={{root: classes.tabs}}>
                     <Tab value={'novelty'} label="Novedades"/>
                     <Tab value={'content'}label="Contenidos"/>
                     <Tab value={'homework'} label="Tareas"/>
                     <Tab value={'participants'} label="Participantes"/>
                 </Tabs>
             </div>
-            {novelty &&  
-                (<Novelty/>) 
+            
+            {
+                {
+                'novelty': <Novelty/>,
+                'content': <Content />,
+                'homework': <Homework />,
+                'participants': <Participants />
+                }[tabValue]
             }
-
-            {content &&  
-                (<div className="courseDetails__content">
-                    <Content/>
-                    <Content/>
-                </div>) 
-            }
-
-            {homework &&  
-                (<Homework/>) 
-            }
-
-            {participants &&  
-                (<Participants/>) 
-            }
-            <AddButton setAddElement={setAddElement}/>
+            <AddButton handleClickOpen={handleClickOpen}/>
             <NavBar/>
-            {/* {addElement === false && 
-                (<Fragment>
-                </Fragment>)
-            } */}
-            {addElement && 
-                (ReactDOM.createPortal(<AddElementView/>,document.body))
-            }
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                TransitionComponent={Transition}
+                aria-labelledby="alert-dialog-slide-title"
+                aria-describedby="alert-dialog-slide-description"
+                className="portalAddElement"
+            >
+                <AddElementView/>
+            </Dialog>
         </div>
     )
 }
+
+const useStyles = makeStyles(() =>
+    createStyles({
+        tabs: {
+            letterSpacing: '0',
+            fontSize: '8px',
+            padding: '0px 25px'
+        }
+    })
+);

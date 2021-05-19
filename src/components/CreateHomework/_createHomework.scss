@@ -117,3 +117,10 @@
 .react-datepicker__header{
     background-color: #DDF6F6 !important;
 }
+
+.DayPicker{
+    font-family: $Noto;
+}
+.DayPicker-Day--selected{
+    background-color: #51BFBD !important;
+}

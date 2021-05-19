@@ -11,13 +11,23 @@ const root = document.querySelector("#root");
 
 export const AddElementView = () => {
     const [open, setOpen] = React.useState(false);
+    const [openUnit, setOpenUnit] = React.useState(false);
+
     const classes = useStyles();
 
-    const handleClickOpen = () => {
+    const handleClickOpenHomework = () => {
         setOpen(true);
     };
+    const handleClickOpenUnit = () => {
+        setOpenUnit(true);
+    };
+
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const handleCloseUnit = () => {
+        setOpenUnit(false);
     };
 
     return(
@@ -28,11 +38,11 @@ export const AddElementView = () => {
                     <h3>Agregar elemento del curso</h3>
                 </div>
                 <div className="addElement__options">
-                    <Link className="addElement__optionsItem" onClick={()=>handleClickOpen()}>
+                    <Link className="addElement__optionsItem" onClick={()=>handleClickOpenHomework()}>
                         <img src={process.env.PUBLIC_URL+'/resources/icon_homework.svg'} alt=""/>
                         <p>Tarea</p>
                     </Link>
-                    <Link className="addElement__optionsItem">
+                    <Link className="addElement__optionsItem" onClick={()=>handleClickOpenUnit()}>
                         <img src={process.env.PUBLIC_URL+'/resources/icon_folder.svg'} alt=""/>
                         <p>Unidad</p>
                     </Link>
@@ -68,6 +78,30 @@ export const AddElementView = () => {
                 </DialogContent>
             </Dialog>
             {/* <CreateHomeworkDialog open={open} onClose={handleClose}/> */}
+            <Dialog
+                open={openUnit}
+                onClose={handleCloseUnit}
+                className="createHomeworkPortal"
+                scroll={"paper"}
+                classes={{
+                    scrollPaper: classes.scrollPaper,
+                    paperScrollPaper: classes.paperScrollPaper,
+                }}
+                TransitionComponent={Transition}
+            >
+            <DialogTitle id="alert-dialog-title" classes={{root: classes.rootDialogTitle}}>
+                <div className="newHomework__header">
+                    <div className="newHomework__headerClose" onClick={()=> handleCloseUnit()}>
+                        <img src={process.env.PUBLIC_URL +'/resources/icon_close.svg'} alt=""/>
+                        <Link>Cancelar</Link>
+                    </div>
+                    <Link>Publicar</Link>
+                </div>
+            </DialogTitle>
+                <DialogContent classes={{root: classes.rootDialogContent}}>
+                    <CreateHomework/>
+                </DialogContent>
+            </Dialog>
         </Fragment>
     )
 }

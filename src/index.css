@@ -1143,6 +1143,14 @@ p, h4, h5, h6, a, label, button {
   background-color: #DDF6F6 !important;
 }
 
+.DayPicker {
+  font-family: "Noto Sans", sans-serif;
+}
+
+.DayPicker-Day--selected {
+  background-color: #51BFBD !important;
+}
+
 .inputField {
   margin: 10px 0px;
   background-repeat: no-repeat;

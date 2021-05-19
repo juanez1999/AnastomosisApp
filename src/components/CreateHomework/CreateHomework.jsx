@@ -1,9 +1,5 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
 import Switch from 'react-ios-switch';
-import DatePicker from '@trendmicro/react-datepicker';
-import '@trendmicro/react-datepicker/dist/react-datepicker.css';
-import moment from 'moment';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles, createStyles, FormGroup } from '@material-ui/core';
 import Accordion from '@material-ui/core/Accordion';
@@ -12,18 +8,20 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
 
 export const CreateHomework = ({handleClose}) => {
 
     const [titleHomework,setTitleHomework] = useState('');
     const [descriptionHomework,setDescriptionHomework] = useState('');
     const [checked, setChecked] = React.useState(false);
-    const [date, setDate] = React.useState(moment().format('YYYY-MM-DD'));
+    const [date, setDate] = React.useState('');
     const [hour, setHour] = React.useState('');
     const classes = useStyles();
-
-    const holis = (event) => {
-        setHour(event.target.value)
+    
+    const handleHour = (event) => {
+        setHour(event.target.value);
     }
 
     const [state, setState] = React.useState({
@@ -82,12 +80,11 @@ export const CreateHomework = ({handleClose}) => {
                     />
                 </div>
                 {checked && 
-                    (<DatePicker
-                        date={date}
-                        onSelect={date => {
-                            setDate(({ date: date }));
-                        }}
-                    />)
+                    (<DayPicker
+                        selectedDays={date}
+                        showOutsideDays
+                        onDayClick={(day)=>setDate(day)}
+                        />)
                 }
                 {checked && 
                     (<TextField
@@ -103,7 +100,7 @@ export const CreateHomework = ({handleClose}) => {
                         inputProps={{
                           step: 300, // 5 min
                         }}
-                        onChange={(event)=>holis(event)}
+                        onChange={(event)=>handleHour(event)}
                     />)
                 }
             </div>
